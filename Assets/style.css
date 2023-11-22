@@ -1,0 +1,77 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    background-color: green;
+    color: #ecf0f1;
+    padding: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+/* customize after custom logo is built */
+#logo {
+    color: white;
+}
+
+#title {
+    margin: 0;
+}
+
+main {
+    display: flex;
+    justify-content: space-between;
+}
+
+.column {
+    display: flex;
+    flex-direction: column;
+}
+
+.box {
+    box-sizing: border-box;
+    border: 8px solid red;
+    padding: 20px;
+    margin: 10px;
+}
+
+#left-column {
+    flex: 1;
+}
+#left-column .box {
+    height: 300px;
+}
+#left-column #dropdown {
+    margin-bottom: 70px;
+}
+#right-column {
+    flex: 2;
+    display: flex;
+    align-items: center;
+}
+#right-box {
+    height: 620px;
+    width: 100%;
+}
+/* Java needs to be done connecting to this for the counter to work! */
+#countdown-box {
+   margin-top: 20px;
+   width: 100%;
+   text-align: center;
+}
+
+footer {
+    background-color: green;
+    color: #ecf0f1;
+    padding: 10px;
+    text-align: center;
+    height: 50px;
+    margin-top: auto; 
+}
