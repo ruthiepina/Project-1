@@ -8,27 +8,26 @@
 </head>
 <body>
     <header>
-        <!-- Change this after custom logo is designed! -->
-        <div id="logo">Your Logo</div>
+        <img src="Images/spotify-high-resolution-logo-transparent.png"id="logo"></img>
         <h1 id="title">Holiday Song Lyric Search Engine</h1>
     </header>
 
     <main>
         <div id="left-column" class="column">
             <div class="box">
-                <label for="dropdown">Select a Holiday:</label>
-                <select id="dropdown">
-                    <option value="song1">Christmas</option>
-                    <option value="song2">Halloween</option>
-                    <option value="song3">New Years</option>
-                    <option value="song1">Cinco De Mayo</option>
-                    <option value="song2">Valentines</option>
-                    <option value="song3">Saint Patricks Day</option>
+                <label for="dropdown"><h2>Select a Holiday:</h2></label>
+                <select id="dropdown" onchange="updateSongInfo()">
+                    <option value="Christmas">Christmas</option>
+                    <option value="Halloween">Halloween</option>
+                    <option value="New-Years">New Years</option>
+                    <option value="Cinco-De-Mayo">Cinco De Mayo</option>
+                    <option value="Valentines">Valentines</option>
+                    <option value="Saint-Patricks">Saint Patricks</option>
                 </select>
             </div>
 
             <div class="box">
-                <label for="previousSongs">Previously Selected Songs:</label>
+                <label for="previousSongs"><h2>Previously Selected Songs:</h2></label>
                 <select id="previousSongs">
                     <option value="prevSong1">Previous Song 1</option>
                     <option value="prevSong2">Previous Song 2</option>
@@ -39,8 +38,9 @@
 
         <div id="right-column" class="column">
             <div id="right-box" class="box">
-                <h2>Holiday info </h2>
-                <p>This is where the playlist of songs of the selected holiday will display.</p>
+                <h2 id="songTitle">Choose a Holiday!</h2>
+                <audio id="audioPlayer" controls></audio>
+                <p id="lyrics">Lyrics will show here when implanted [^ - ^]</p>
             </div>
         </div>
     </main>
@@ -52,5 +52,9 @@
         &copy; 2023 Holiday Song Lyric Search Engine
         <p>Created By: Pina, Travis, Sam, and Dane</p>
     </footer>
+
+    <script src="Assets/script.js"></script>
+
+    
 </body>
 </html>

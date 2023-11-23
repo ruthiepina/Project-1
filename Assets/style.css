@@ -12,19 +12,22 @@ header {
     color: #ecf0f1;
     padding: 10px;
     display: flex;
-    justify-content: space-between;
+    justify-content: left;
     align-items: center;
     height: 70px;
 }
-/* customize after custom logo is built */
+
 #logo {
-    color: white;
+    max-width: 10%;
+    height: 140%;
 }
 
 #title {
-    margin: 0;
+    margin: 20px;
 }
-
+h2 {
+    font-size: 30px;
+}
 main {
     display: flex;
     justify-content: space-between;
@@ -60,7 +63,7 @@ main {
     height: 620px;
     width: 100%;
 }
-/* Java needs to be done connecting to this for the counter to work! */
+/* Connect java to make this countdown functional! */
 #countdown-box {
    margin-top: 20px;
    width: 100%;
