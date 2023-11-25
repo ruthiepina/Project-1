@@ -17,7 +17,7 @@
 
     <main>
         <div id="left-column" class="column">
-            <div class="box">
+            <div class="box rounded">
                 <label for="dropdown"><h2>Select a Holiday:</h2></label>
                 <select id="dropdown" onchange="updateSongInfo()">
                     <option value="Christmas">Christmas</option>
@@ -29,7 +29,7 @@
                 </select>
             </div>
 
-            <div class="box">
+            <div class="box rounded">
                 <label for="previousSongs"><h2>Previously Selected Songs:</h2></label>
                 <select id="previousSongs">
                     <option value="prevSong1">Previous Song 1</option>
@@ -40,7 +40,7 @@
         </div>
 
         <div id="right-column" class="column">
-            <div id="right-box" class="box">
+            <div id="right-box" class="box rounded">
                 <h2 id="songTitle">Choose a Holiday!</h2>
                 <audio id="audioPlayer" controls></audio>
                 <p id="lyrics">Lyrics will show here when implanted [^ - ^]</p>
@@ -48,14 +48,15 @@
         </div>
     </main>
 
-    <div id="countdown-box" class="box">
+    <!-- I commented out the countdown box until we know if we'll have time to implement it -->
+    <!-- <div id="countdown-box" class="box rounded">
         <h2>Countdown</h2>
         <p id="countdown">Countdown will be displayed here.</p>
-    </div>
+    </div> -->
 
     <footer>
-        &copy; 2023 Holiday Song Lyric Search Engine
-        <p>Created By: Pina, Travis, Sam, and Dane</p>
+        <p>&copy; 2023 Holiday Song Lyric Search Engine
+        <br>Created By: Ruthie, Travis, Sam, and Dane</p>
     </footer>
 
     <!-- jQuery link -->

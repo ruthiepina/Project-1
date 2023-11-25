@@ -75,6 +75,11 @@ footer {
     color: #ecf0f1;
     padding: 10px;
     text-align: center;
-    height: 50px;
-    margin-top: auto; 
+    min-height: 75px;
+    margin-top: auto;
+    vertical-align: center;
+}
+
+footer p{
+    vertical-align: center;
 }
