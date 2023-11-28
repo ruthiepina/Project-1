@@ -8,6 +8,7 @@
     <!-- Link to project CSS script -->
     <link rel="stylesheet" href="Assets/style.css">
     <title>Holiday Song Lyric Search Engine</title>
+    <style id="colorStyles"></style>
 </head>
 <body>
     <header>
@@ -17,9 +18,10 @@
 
     <main>
         <div id="left-column" class="column">
-            <div class="box rounded">
+            <div id="box" class="box rounded">
                 <label for="dropdown"><h2>Select a Holiday:</h2></label>
                 <select id="dropdown" onchange="updateSongInfo()">
+                    <option value="Holidays" selected>Holidays</option>
                     <option value="Christmas">Christmas</option>
                     <option value="Halloween">Halloween</option>
                     <option value="New-Years">New Years</option>
@@ -29,7 +31,7 @@
                 </select>
             </div>
 
-            <div class="box rounded">
+            <div id="box" class="box rounded">
                 <label for="previousSongs"><h2>Previously Selected Songs:</h2></label>
                 <select id="previousSongs">
                     <option value="prevSong1">Previous Song 1</option>
@@ -40,7 +42,7 @@
         </div>
 
         <div id="right-column" class="box column rounded">
-            <div id="right-box">
+            <div id="box" id="right-box">
                 <h2 id="songTitle">Choose a Holiday!</h2>
                 <audio id="audioPlayer" controls></audio>
                 <p id="lyrics">Lyrics will show here when implanted [^ - ^]</p>

@@ -1,4 +1,6 @@
 body {
+    background-color: green;
+    color: black;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -8,8 +10,8 @@ body {
 }
 
 header {
-    background-color: green;
-    color: #ecf0f1;
+    background-color: black;
+    color: green;
     padding: 10px;
     display: flex;
     justify-content: left;
@@ -40,7 +42,7 @@ main {
 
 .box {
     box-sizing: border-box;
-    border: 8px solid red;
+    border: 8px solid;
     padding: 20px;
     margin: 10px;
 }
@@ -71,8 +73,8 @@ main {
 }
 
 footer {
-    background-color: green;
-    color: #ecf0f1;
+    background-color: black;
+    color: green;
     padding: 10px;
     text-align: center;
     min-height: 75px;
