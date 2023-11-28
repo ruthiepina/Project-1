@@ -143,5 +143,5 @@ break;
     document.getElementById("colorStyles").textContent = colorStyles;            
 }
 
-updateStyles();
+
    
