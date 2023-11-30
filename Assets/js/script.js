@@ -134,20 +134,21 @@
 
 //* Spotify API Process (Ruthie)
 const globalAsync = async () => {
+   //* Get Spotify Token
    const spotifyToken = async () => {
-      //* Get Spotify Token - from Spotify API
       const response = await fetch("https://accounts.spotify.com/api/token", {
          method: "POST",
          body: new URLSearchParams({
             grant_type: "client_credentials",
-            client_id: "09492227f96b49f889b2baa58716b1a3",
-            client_secret: "3ac19ec7f05f435195950a492ad9fbd1",
+            client_id: CLIENT_ID,
+            client_secret: CLIENT_SECRET,
          }),
       });
       const tokenData = await response.json(); //* Parses response into object tokenData
       accessToken = tokenData.access_token; //* Gets access token
    };
 
+   //* Gets Spotify endpoint data for playlists
    const getPlaylist = async (playlistId) => {
       const response = await fetch("https://api.spotify.com/v1/playlists/" + playlistId, {
          headers: {
@@ -158,9 +159,11 @@ const globalAsync = async () => {
       console.log("file: script.js:158 ~ playlist:", playlist);
    };
 
-   const playlistId = "1cSe1tbdYYYnyoP93yJlRA";
-   var accessToken = "";
-   await spotifyToken();
-   await getPlaylist(playlistId);
+   const playlistId = "1cSe1tbdYYYnyoP93yJlRA"; //*Temporary id, will be using array of ID's
+   let accessToken = "";
+   const CLIENT_ID = "09492227f96b49f889b2baa58716b1a3";
+   const CLIENT_SECRET = "3ac19ec7f05f435195950a492ad9fbd1";
+   await spotifyToken(); //* Await until function returns promise
+   await getPlaylist(playlistId); //* Await until function returns promise
 };
-globalAsync();
+globalAsync(); //* Call main program
