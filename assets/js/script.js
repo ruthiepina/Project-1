@@ -2,6 +2,33 @@
 let accessToken = "";
 let playlist = "";
 
+const playlistArray = [
+   {
+      holiday: "christmas",
+      spotifyId: "1cSe1tbdYYYnyoP93yJlRA",
+   },
+   {
+      holiday: "halloween",
+      spotifyId: "2bWtVAl9VX45x9gAUPiVOF",
+   },
+   {
+      holiday: "new-years",
+      spotifyId: "3Kr8SkA44EkGhZlXLlFT8T",
+   },
+   {
+      holiday: "valentines",
+      spotifyId: "7awVFZ11ewVYCk0KyMYCka",
+   },
+   {
+      holiday: "cinco-de-mayo",
+      spotifyId: "37i9dQZF1DWW6FKfbzAFjW",
+   },
+   {
+      holiday: "saint-patricks",
+      spotifyId: "0HzXazYFGhBDrqZk4e3nPI",
+   },
+];
+
 let trackList = [];
 
 const getPlaylistTracks = async (playlist) => {
@@ -27,32 +54,6 @@ const processPlaylist = async () => {
    const selectedHoliday = document.getElementById("dropdown").value;
    console.log("file: script.js:164 ~ selectedHoliday:", selectedHoliday);
 
-   const playlistArray = [
-      {
-         holiday: "christmas",
-         spotifyId: "1cSe1tbdYYYnyoP93yJlRA",
-      },
-      {
-         holiday: "halloween",
-         spotifyId: "2bWtVAl9VX45x9gAUPiVOF",
-      },
-      {
-         holiday: "new-years",
-         spotifyId: "3Kr8SkA44EkGhZlXLlFT8T",
-      },
-      {
-         holiday: "valentines",
-         spotifyId: "7awVFZ11ewVYCk0KyMYCka",
-      },
-      {
-         holiday: "cinco-de-mayo",
-         spotifyId: "37i9dQZF1DWW6FKfbzAFjW",
-      },
-      {
-         holiday: "saint-patricks",
-         spotifyId: "0HzXazYFGhBDrqZk4e3nPI",
-      },
-   ];
    let playlistId = "";
    for (let i = 0; i < playlistArray.length; i++) {
       if (playlistArray[i].holiday === selectedHoliday) {
@@ -123,6 +124,8 @@ function updateSongInfo() {
    document.querySelector("body").className = selectedHoliday;
    document.querySelector("header").className = selectedHoliday;
    document.querySelector("footer").className = selectedHoliday;
+
+   processPlaylist();
 
    //    switch (selectedHoliday) {
    //       case "Christmas":
@@ -228,8 +231,6 @@ function updateSongInfo() {
    //    }
 
    //    document.getElementById("colorStyles").textContent = colorStyles;
-
-   processPlaylist();
 }
 
 //* Gets Spotify endpoint data for playlists
