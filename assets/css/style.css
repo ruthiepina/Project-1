@@ -1,91 +1,170 @@
 body {
-    background-color: green;
-    color: black;
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+   background-color: green;
+   color: black;
+   font-family: Arial, sans-serif;
+   margin: 0;
+   padding: 0;
+   display: flex;
+   flex-direction: column;
+   min-height: 100vh;
 }
 
 header {
-    background-color: black;
-    color: green;
-    padding: 10px;
-    display: flex;
-    justify-content: left;
-    align-items: center;
-    height: 70px;
+   background-color: black;
+   color: green;
+   padding: 10px;
+   display: flex;
+   justify-content: left;
+   align-items: center;
+   height: 70px;
 }
 
 #logo {
-    max-width: 10%;
-    height: 140%;
+   max-width: 10%;
+   height: 140%;
 }
 
 #title {
-    margin: 20px;
+   margin: 20px;
 }
 h2 {
-    font-size: 30px;
+   font-size: 30px;
 }
 main {
-    display: flex;
-    justify-content: space-between;
+   display: flex;
+   justify-content: space-between;
 }
 
 .column {
-    display: flex;
-    flex-direction: column;
+   display: flex;
+   flex-direction: column;
 }
 
 .box {
-    box-sizing: border-box;
-    border: 8px solid;
-    padding: 20px;
-    margin: 10px;
+   box-sizing: border-box;
+   border: 8px solid;
+   padding: 20px;
+   margin: 10px;
 }
 
 #left-column {
-    flex: 1;
+   flex: 1;
 }
 #left-column .box {
-    height: 300px;
+   height: 300px;
 }
 #left-column #dropdown {
-    margin-bottom: 70px;
+   margin-bottom: 70px;
 }
 #right-column {
-    flex: 2;
-    display: flex;
-    align-items: center;
+   flex: 2;
+   display: flex;
+   align-items: center;
 }
 #right-box {
-    height: 620px;
-    width: 100%;
+   height: 620px;
+   width: 100%;
 }
 
 footer {
-    background-color: black;
-    color: green;
-    padding: 10px;
-    text-align: center;
-    min-height: 75px;
-    margin-top: auto;
-    vertical-align: center;
+   background-color: black;
+   color: green;
+   padding: 10px;
+   text-align: center;
+   min-height: 75px;
+   margin-top: auto;
+   vertical-align: center;
 }
 
-footer p{
-    vertical-align: center;
+footer p {
+   vertical-align: center;
+}
+
+body.christmas {
+   background-color: red;
+   color: white;
+}
+
+header.christmas {
+   background-color: green;
+   color: white;
+}
+
+footer.christmas {
+   background-color: green;
+   color: white;
+}
+
+body.halloween {
+   background-color: orange;
+   color: black;
+}
+header.halloween {
+   background-color: black;
+   color: orange;
+}
+footer.halloween {
+   background-color: black;
+   color: orange;
+}
+
+body.new-years {
+   background-color: red;
+   color: white;
+}
+header.new-years {
+   background-color: blue;
+   color: white;
+}
+footer.new-years {
+   background-color: blue;
+   color: white;
+}
+
+body.cinco-de-mayo {
+   background-color: white;
+   color: black;
+}
+header.cinco-de-mayo {
+   background-color: green;
+   color: black;
+}
+footer.cinco-de-mayo {
+   background-color: red;
+   color: black;
+}
+
+body.valentines {
+   background-color: pink;
+   color: red;
+}
+header.valentines {
+   background-color: red;
+   color: pink;
+}
+footer.valentines {
+   background-color: red;
+   color: pink;
+}
+
+body.saint-patricks {
+   background-color: orange;
+   color: white;
+}
+header.saint-patricks {
+   background-color: green;
+   color: white;
+}
+footer.saint-patricks {
+   background-color: green;
+   color: white;
 }
 
 @media screen and (max-width: 1024px) {
-    
 }
 
 @media screen and (max-width: 768px) {
-    main{
-        flex-direction: column;
-    }
+   main {
+      flex-direction: column;
+   }
 }
