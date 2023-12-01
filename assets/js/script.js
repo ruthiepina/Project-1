@@ -29,27 +29,27 @@ const processPlaylist = async () => {
 
    const playlistArray = [
       {
-         holiday: "Christmas",
+         holiday: "christmas",
          spotifyId: "1cSe1tbdYYYnyoP93yJlRA",
       },
       {
-         holiday: "Halloween",
+         holiday: "halloween",
          spotifyId: "2bWtVAl9VX45x9gAUPiVOF",
       },
       {
-         holiday: "New-Years",
+         holiday: "new-years",
          spotifyId: "3Kr8SkA44EkGhZlXLlFT8T",
       },
       {
-         holiday: "Valentines",
+         holiday: "valentines",
          spotifyId: "7awVFZ11ewVYCk0KyMYCka",
       },
       {
-         holiday: "Cinco-De-Mayo",
+         holiday: "cinco-de-mayo",
          spotifyId: "37i9dQZF1DWW6FKfbzAFjW",
       },
       {
-         holiday: "Saint-Patricks",
+         holiday: "saint-patricks",
          spotifyId: "0HzXazYFGhBDrqZk4e3nPI",
       },
    ];
@@ -115,116 +115,120 @@ function getSongInfo(holiday) {
 }
 
 // THIS IS THE COLOR CHANGING CODE (VERY IMPORTANT)
-
+//* Updated to javascript only, styling in css file.
 function updateSongInfo() {
    var selectedHoliday = document.getElementById("dropdown").value;
 
-   var colorStyles = "";
+   //* Assigns css class to holiday.
+   document.querySelector("body").className = selectedHoliday;
+   document.querySelector("header").className = selectedHoliday;
+   document.querySelector("footer").className = selectedHoliday;
 
-   switch (selectedHoliday) {
-      case "Christmas":
-         colorStyles = `
-body {
-    background-color: red;
-    color: white;
-}
-header {
-    background-color: green;
-    color: white;
-}
-footer {
-    background-color: green;
-    color: white;
-}
-        `;
-         break;
+   //    switch (selectedHoliday) {
+   //       case "Christmas":
+   //          colorStyles = `
+   // body {
+   //     background-color: red;
+   //     color: white;
+   // }
+   // header {
+   //     background-color: green;
+   //     color: white;
+   // }
+   // footer {
+   //     background-color: green;
+   //     color: white;
+   // }
+   //         `;
+   //          break;
 
-      case "Halloween":
-         colorStyles = `
-body {
-    background-color: orange;
-    color: black;
-}
-header {
-    background-color: black;
-    color: orange;
-}
-footer {
-    background-color: black;
-    color: orange;
-}
-`;
-         break;
+   //       case "Halloween":
+   //          colorStyles = `
+   // body {
+   //     background-color: orange;
+   //     color: black;
+   // }
+   // header {
+   //     background-color: black;
+   //     color: orange;
+   // }
+   // footer {
+   //     background-color: black;
+   //     color: orange;
+   // }
+   // `;
+   //          break;
 
-      case "New-Years":
-         colorStyles = `
-body {
-    background-color: red;
-    color: white;
-}
-header {
-    background-color: blue;
-    color: white;
-}
-footer {
-    background-color: blue;
-    color: white;
-}
-`;
-         break;
+   //       case "New-Years":
+   //          colorStyles = `
+   // body {
+   //     background-color: red;
+   //     color: white;
+   // }
+   // header {
+   //     background-color: blue;
+   //     color: white;
+   // }
+   // footer {
+   //     background-color: blue;
+   //     color: white;
+   // }
+   // `;
+   //          break;
 
-      case "Cinco-De-Mayo":
-         colorStyles = `
-body {
-    background-color: white;
-    color: black;
-}
-header {
-    background-color: green;
-    color: black;
-}
-footer {
-    background-color: red;
-    color: black;
-}
-`;
-         break;
+   //       case "Cinco-De-Mayo":
+   //          colorStyles = `
+   // body {
+   //     background-color: white;
+   //     color: black;
+   // }
+   // header {
+   //     background-color: green;
+   //     color: black;
+   // }
+   // footer {
+   //     background-color: red;
+   //     color: black;
+   // }
+   // `;
+   //          break;
 
-      case "Valentines":
-         colorStyles = `
-body {
-    background-color: pink;
-    color: red;
-}
-header {
-    background-color: red;
-    color: pink;
-}
-footer {
-    background-color: red;
-    color: pink;
-}
-`;
-         break;
-      case "Saint-Patricks":
-         colorStyles = `
-body {
-    background-color: orange;
-    color: white;
-}
-header {
-    background-color: green;
-    color: white;
-}
-footer {
-    background-color: green;
-    color: white;
-}
-`;
-         break;
-   }
+   //       case "Valentines":
+   //          colorStyles = `
+   // body {
+   //     background-color: pink;
+   //     color: red;
+   // }
+   // header {
+   //     background-color: red;
+   //     color: pink;
+   // }
+   // footer {
+   //     background-color: red;
+   //     color: pink;
+   // }
+   // `;
+   //          break;
+   //       case "Saint-Patricks":
+   //          colorStyles = `
+   // body {
+   //     background-color: orange;
+   //     color: white;
+   // }
+   // header {
+   //     background-color: green;
+   //     color: white;
+   // }
+   // footer {
+   //     background-color: green;
+   //     color: white;
+   // }
+   // `;
+   //          break;
+   //    }
 
-   document.getElementById("colorStyles").textContent = colorStyles;
+   //    document.getElementById("colorStyles").textContent = colorStyles;
+
    processPlaylist();
 }
 
