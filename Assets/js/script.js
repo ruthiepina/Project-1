@@ -1,5 +1,28 @@
 //* Runs Spotify endpoint against selected holiday
 let accessToken = "";
+let playlist = "";
+
+let trackList = [];
+
+const getPlaylistTracks = async (playlist) => {
+   trackList = [];
+
+   for (let i = 0; i < playlist.tracks.items.length; i++) {
+      let track = {
+         trackId: playlist.tracks.items[i].track.id,
+         trackName: playlist.tracks.items[i].track.name,
+         trackPreview:
+            playlist.tracks.items[i].track.preview_url === null
+               ? "Preview not available."
+               : playlist.tracks.items[i].track.preview,
+         trackArtistName: playlist.tracks.items[i].track.artists[0].name,
+      };
+
+      trackList.push(track);
+   }
+   console.log("file: script.js:22 ~ trackList:", trackList);
+};
+
 const processPlaylist = async () => {
    const selectedHoliday = document.getElementById("dropdown").value;
    console.log("file: script.js:164 ~ selectedHoliday:", selectedHoliday);
@@ -37,7 +60,8 @@ const processPlaylist = async () => {
          break;
       }
    }
-   getPlaylist(playlistId);
+   await getPlaylist(playlistId);
+   getPlaylistTracks(playlist);
 };
 
 function updateSongInfo() {
@@ -182,8 +206,8 @@ const getPlaylist = async (playlistId) => {
          Authorization: "Bearer " + accessToken,
       },
    });
-   const playlist = await response.json(); //* Parses response into playlist object
-   console.log("file: script.js:184 ~ playlist:", playlist);
+   playlist = await response.json(); //* Parses response into playlist object
+   console.log("file: script.js:213 ~ playlist:", playlist);
 };
 
 //* Spotify API Process (Ruthie)
