@@ -15,19 +15,19 @@ const processPlaylist = async () => {
       },
       {
          holiday: "New-Years",
-         spotifyId: "1cSe1tbdYYYnyoP93yJlRA",
+         spotifyId: "3Kr8SkA44EkGhZlXLlFT8T",
       },
       {
          holiday: "Valentines",
-         spotifyId: "1cSe1tbdYYYnyoP93yJlRA",
+         spotifyId: "7awVFZ11ewVYCk0KyMYCka",
       },
       {
          holiday: "Cinco-De-Mayo",
-         spotifyId: "1cSe1tbdYYYnyoP93yJlRA",
+         spotifyId: "37i9dQZF1DWW6FKfbzAFjW",
       },
       {
          holiday: "Saint-Patricks",
-         spotifyId: "1cSe1tbdYYYnyoP93yJlRA",
+         spotifyId: "0HzXazYFGhBDrqZk4e3nPI",
       },
    ];
    let playlistId = "";
