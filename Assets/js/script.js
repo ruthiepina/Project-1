@@ -58,7 +58,10 @@ const processPlaylist = async () => {
       let lyricsBtn = document.createElement('button')
       lyricsBtn.setAttribute('type', 'button')
       lyricsBtn.setAttribute('class', 'col-2 btn btn-dark lyrics-btn')
-      lyricsBtn.innerHTML = 'Get the lyrics'
+      lyricsBtn.setAttribute('data-toggle', 'modal')
+      lyricsBtn.setAttribute('data-target', '#lyricsModal')
+      lyricsBtn.addEventListener('click', generateLyrics)
+      lyricsBtn.innerHTML = 'Get lyrics'
 
       cardBody.append(songTitle, songArtist, lyricsBtn)
       songBlock.append(cardBody)
@@ -236,3 +239,12 @@ const globalAsync = async () => {
    // await getPlaylist(playlistId); //* Await until function returns promise
 };
 globalAsync(); //* Call main program
+
+var modalTitle = document.querySelector('#modalTitle')
+
+function generateLyrics(e){
+   e.preventDefault();
+   if(e.target.nodeName==='BUTTON'){
+      modalTitle.innerHTML = e.target.previousElementSibling.previousElementSibling.innerHTML;
+   }
+}
