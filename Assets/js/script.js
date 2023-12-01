@@ -37,7 +37,34 @@ const processPlaylist = async () => {
          break;
       }
    }
-   getPlaylist(playlistId);
+
+   const playlist = await getPlaylist(playlistId);
+   const playlistDiv = $('#playlist-div');
+   // Removes all child elements from the playlist div before adding new ones in
+   playlistDiv.empty();
+
+   // Iterates through the Spotify playlist to extract track name and artist and then creates a DOM element
+   for(i=0;i<playlist.tracks.items.length;i++){
+      let songBlock = document.createElement('div')
+      songBlock.setAttribute('class', 'card song-block')
+      let cardBody = document.createElement('div')
+      cardBody.setAttribute('class', 'card-body row px-4')
+      let songTitle = document.createElement('div')
+      songTitle.setAttribute('class', 'col text-center text-dark py-2 song-title')
+      songTitle.innerHTML = playlist.tracks.items[i].track.name
+      let songArtist = document.createElement('div')
+      songArtist.setAttribute('class', 'col text-center text-dark py-2 song-artist')
+      songArtist.innerHTML = playlist.tracks.items[i].track.artists[0].name
+      let lyricsBtn = document.createElement('button')
+      lyricsBtn.setAttribute('type', 'button')
+      lyricsBtn.setAttribute('class', 'col-2 btn btn-dark lyrics-btn')
+      lyricsBtn.innerHTML = 'Get the lyrics'
+
+      cardBody.append(songTitle, songArtist, lyricsBtn)
+      songBlock.append(cardBody)
+      playlistDiv.append(songBlock)
+   }
+
 };
 
 function updateSongInfo() {
@@ -183,7 +210,8 @@ const getPlaylist = async (playlistId) => {
       },
    });
    const playlist = await response.json(); //* Parses response into playlist object
-   console.log("file: script.js:184 ~ playlist:", playlist);
+   console.log("file: script.js:187 ~ playlist:", playlist);
+   return playlist;
 };
 
 //* Spotify API Process (Ruthie)
