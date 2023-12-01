@@ -61,7 +61,36 @@ const processPlaylist = async () => {
       }
    }
    await getPlaylist(playlistId);
-   getPlaylistTracks(playlist);
+   await getPlaylistTracks(playlist);
+
+   const playlistDiv = $("#playlist-div");
+   // Removes all child elements from the playlist div before adding new ones in
+   playlistDiv.empty();
+
+   // Iterates through the Spotify playlist to extract track name and artist and then creates a DOM element
+   for (i = 0; i < playlist.tracks.items.length; i++) {
+      let songBlock = document.createElement("div");
+      songBlock.setAttribute("class", "card song-block");
+      let cardBody = document.createElement("div");
+      cardBody.setAttribute("class", "card-body row px-4");
+      let songTitle = document.createElement("div");
+      songTitle.setAttribute("class", "col text-center text-dark py-2 song-title");
+      songTitle.innerHTML = playlist.tracks.items[i].track.name;
+      let songArtist = document.createElement("div");
+      songArtist.setAttribute("class", "col text-center text-dark py-2 song-artist");
+      songArtist.innerHTML = playlist.tracks.items[i].track.artists[0].name;
+      let lyricsBtn = document.createElement("button");
+      lyricsBtn.setAttribute("type", "button");
+      lyricsBtn.setAttribute("class", "col-2 btn btn-dark lyrics-btn");
+      lyricsBtn.setAttribute("data-toggle", "modal");
+      lyricsBtn.setAttribute("data-target", "#lyricsModal");
+      lyricsBtn.addEventListener("click", generateLyrics);
+      lyricsBtn.innerHTML = "Get lyrics";
+
+      cardBody.append(songTitle, songArtist, lyricsBtn);
+      songBlock.append(cardBody);
+      playlistDiv.append(songBlock);
+   }
 };
 
 function updateSongInfo() {
@@ -208,6 +237,7 @@ const getPlaylist = async (playlistId) => {
    });
    playlist = await response.json(); //* Parses response into playlist object
    console.log("file: script.js:213 ~ playlist:", playlist);
+   return playlist;
 };
 
 //* Spotify API Process (Ruthie)
@@ -232,3 +262,12 @@ const globalAsync = async () => {
    // await getPlaylist(playlistId); //* Await until function returns promise
 };
 globalAsync(); //* Call main program
+
+var modalTitle = document.querySelector("#modalTitle");
+
+function generateLyrics(e) {
+   e.preventDefault();
+   if (e.target.nodeName === "BUTTON") {
+      modalTitle.innerHTML = e.target.previousElementSibling.previousElementSibling.innerHTML;
+   }
+}
