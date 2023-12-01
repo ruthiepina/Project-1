@@ -1,7 +1,6 @@
 //* Runs Spotify endpoint against selected holiday
 let accessToken = "";
 let playlist = "";
-
 const playlistArray = [
    {
       holiday: "christmas",
@@ -29,31 +28,12 @@ const playlistArray = [
    },
 ];
 
-let trackList = [];
-
-const getPlaylistTracks = async (playlist) => {
-   trackList = [];
-
-   for (let i = 0; i < playlist.tracks.items.length; i++) {
-      let track = {
-         trackId: playlist.tracks.items[i].track.id,
-         trackName: playlist.tracks.items[i].track.name,
-         trackPreview:
-            playlist.tracks.items[i].track.preview_url === null
-               ? "Preview not available."
-               : playlist.tracks.items[i].track.preview,
-         trackArtistName: playlist.tracks.items[i].track.artists[0].name,
-      };
-
-      trackList.push(track);
-   }
-   console.log("file: script.js:22 ~ trackList:", trackList);
-};
-
+//* Creates and displays playlist upon holiday selection
 const processPlaylist = async () => {
+   //* Get dropdown selection
    const selectedHoliday = document.getElementById("dropdown").value;
-   console.log("file: script.js:164 ~ selectedHoliday:", selectedHoliday);
 
+   //* Gets Spotify playlist id that matches dropdown holiday selection
    let playlistId = "";
    for (let i = 0; i < playlistArray.length; i++) {
       if (playlistArray[i].holiday === selectedHoliday) {
@@ -61,8 +41,9 @@ const processPlaylist = async () => {
          break;
       }
    }
-   await getPlaylist(playlistId);
-   await getPlaylistTracks(playlist);
+   await getPlaylist(playlistId); //* Get playlist content: song name, artist name, audio preview (if available)
+
+
 
    const playlistDiv = $("#playlist-div");
    // Removes all child elements from the playlist div before adding new ones in
@@ -88,7 +69,24 @@ const processPlaylist = async () => {
       lyricsBtn.addEventListener("click", generateLyrics);
       lyricsBtn.innerHTML = "Get lyrics";
 
-      cardBody.append(songTitle, songArtist, lyricsBtn);
+
+
+      //* Preview audio code
+      let playTrackEl = "";
+      if (playlist.tracks.items[i].track.preview_url !== null) {
+         playTrackEl = document.createElement("audio");
+         playTrackEl.setAttribute("controls", "true");
+         playTrackEl.setAttribute("src", playlist.tracks.items[i].track.preview_url);
+      } else {
+         playTrackEl = document.createElement("p");
+         playTrackEl.setAttribute("id", "no-audio");
+         playTrackEl.textContent = "Preview audio is not available";
+      }
+      playTrackEl.setAttribute("class", "col text-center text-dark py-2 track-audio");
+
+
+
+      cardBody.append(songTitle, songArtist, playTrackEl, lyricsBtn);
       songBlock.append(cardBody);
       playlistDiv.append(songBlock);
    }
@@ -115,122 +113,19 @@ function getSongInfo(holiday) {
    };
 }
 
-// THIS IS THE COLOR CHANGING CODE (VERY IMPORTANT)
+
+
+
 //* Updated to javascript only, styling in css file.
 function updateSongInfo() {
    var selectedHoliday = document.getElementById("dropdown").value;
 
-   //* Assigns css class to holiday.
+   //* Assigns css class to color the page to match the holiday
    document.querySelector("body").className = selectedHoliday;
    document.querySelector("header").className = selectedHoliday;
    document.querySelector("footer").className = selectedHoliday;
 
-   processPlaylist();
-
-   //    switch (selectedHoliday) {
-   //       case "Christmas":
-   //          colorStyles = `
-   // body {
-   //     background-color: red;
-   //     color: white;
-   // }
-   // header {
-   //     background-color: green;
-   //     color: white;
-   // }
-   // footer {
-   //     background-color: green;
-   //     color: white;
-   // }
-   //         `;
-   //          break;
-
-   //       case "Halloween":
-   //          colorStyles = `
-   // body {
-   //     background-color: orange;
-   //     color: black;
-   // }
-   // header {
-   //     background-color: black;
-   //     color: orange;
-   // }
-   // footer {
-   //     background-color: black;
-   //     color: orange;
-   // }
-   // `;
-   //          break;
-
-   //       case "New-Years":
-   //          colorStyles = `
-   // body {
-   //     background-color: red;
-   //     color: white;
-   // }
-   // header {
-   //     background-color: blue;
-   //     color: white;
-   // }
-   // footer {
-   //     background-color: blue;
-   //     color: white;
-   // }
-   // `;
-   //          break;
-
-   //       case "Cinco-De-Mayo":
-   //          colorStyles = `
-   // body {
-   //     background-color: white;
-   //     color: black;
-   // }
-   // header {
-   //     background-color: green;
-   //     color: black;
-   // }
-   // footer {
-   //     background-color: red;
-   //     color: black;
-   // }
-   // `;
-   //          break;
-
-   //       case "Valentines":
-   //          colorStyles = `
-   // body {
-   //     background-color: pink;
-   //     color: red;
-   // }
-   // header {
-   //     background-color: red;
-   //     color: pink;
-   // }
-   // footer {
-   //     background-color: red;
-   //     color: pink;
-   // }
-   // `;
-   //          break;
-   //       case "Saint-Patricks":
-   //          colorStyles = `
-   // body {
-   //     background-color: orange;
-   //     color: white;
-   // }
-   // header {
-   //     background-color: green;
-   //     color: white;
-   // }
-   // footer {
-   //     background-color: green;
-   //     color: white;
-   // }
-   // `;
-   //          break;
-   //    }
-
-   //    document.getElementById("colorStyles").textContent = colorStyles;
+   processPlaylist(); //* Process the selected holiday playlist
 }
 
 //* Gets Spotify endpoint data for playlists
@@ -241,11 +136,10 @@ const getPlaylist = async (playlistId) => {
       },
    });
    playlist = await response.json(); //* Parses response into playlist object
-   console.log("file: script.js:213 ~ playlist:", playlist);
    return playlist;
 };
 
-//* Spotify API Process (Ruthie)
+//* Spotify API Process
 const globalAsync = async () => {
    //* Get Spotify Token
    const spotifyToken = async () => {
@@ -264,9 +158,10 @@ const globalAsync = async () => {
    const CLIENT_ID = "09492227f96b49f889b2baa58716b1a3";
    const CLIENT_SECRET = "3ac19ec7f05f435195950a492ad9fbd1";
    await spotifyToken(); //* Await until function returns promise
-   // await getPlaylist(playlistId); //* Await until function returns promise
 };
 globalAsync(); //* Call main program
+
+
 
 var modalTitle = document.querySelector("#modalTitle");
 
