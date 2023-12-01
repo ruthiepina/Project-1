@@ -1,42 +1,27 @@
-         function updateSongInfo() {
-            
-            var selectedHoliday = document.getElementById("dropdown").value;
+function updateSongInfo() {            
+var selectedHoliday = document.getElementById("dropdown").value;
+var songInfo = getSongInfo(selectedHoliday);            
+document.getElementById("songTitle").textContent = songInfo.title;            
+document.getElementById("lyrics").textContent = songInfo.lyrics;            
+document.getElementById("audioPlayer").src = songInfo.audioSrc;
+}        
 
-            
-            var songInfo = getSongInfo(selectedHoliday);
-
-            
-            document.getElementById("songTitle").textContent = songInfo.title;
-
-            
-            document.getElementById("lyrics").textContent = songInfo.lyrics;
-
-            
-            document.getElementById("audioPlayer").src = songInfo.audioSrc;
-        }
-
+function getSongInfo(holiday) {
+           
+ // This is a placeholder example!!! This took a while for me so please be careful
+return {
+    title: "Song Title for " + holiday,
+    lyrics: "Lyrics for the song related to " + holiday,
+    audioSrc: "path/to/audio/file.mp3"
+};
+}
         
-        function getSongInfo(holiday) {
-            
-            
-            // This is a placeholder example!!! This took a while for me so please be careful
-            return {
-                title: "Song Title for " + holiday,
-                lyrics: "Lyrics for the song related to " + holiday,
-                audioSrc: "path/to/audio/file.mp3"
-            };
-        }
+// THIS IS THE COLOR CHANGING CODE (VERY IMPORTANT)
         
-        // THIS IS THE COLOR CHANGING CODE (VERY IMPORTANT)
-        
-        function updateSongInfo() {
-            
-            var selectedHoliday = document.getElementById("dropdown").value;
-
-            
-            var colorStyles = ""; 
-
-            switch (selectedHoliday) {
+function updateSongInfo() {            
+var selectedHoliday = document.getElementById("dropdown").value;            
+var colorStyles = ""; 
+switch (selectedHoliday) {
 case "Christmas":
     colorStyles = `
 body {
@@ -51,8 +36,8 @@ footer {
     background-color: green; 
     color: white;
 }
-        `;
-        break;
+`;
+break;
                     
 case "Halloween":
     colorStyles = `
@@ -140,7 +125,7 @@ break;
 }
 
 
-    document.getElementById("colorStyles").textContent = colorStyles;            
+document.getElementById("colorStyles").textContent = colorStyles;            
 }
 
 
