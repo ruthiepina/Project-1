@@ -184,7 +184,11 @@ async function generateLyrics(e) {
 
       try {
          const response = await fetch(url, options);
-         const result = await response.text();
+         let result = await response.text();
+         for(i=0;i<=result.length;i++){
+            let slicer = result.substring(result.indexOf('['), result.indexOf(']')+1)
+            result = result.replace(slicer, '')
+         }
          modalBody.innerHTML = result;
       } catch (error) {
          modalBody.innerHTML = 'Unable to find lyrics';
