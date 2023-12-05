@@ -1,5 +1,4 @@
 //* Runs Spotify endpoint against selected holiday
-// let selectedSongs = [];
 let accessToken = "";
 let playlist = "";
 const playlistArray = [
@@ -107,19 +106,9 @@ document.getElementById("songTitle").textContent = songInfo.title;
 document.getElementById("lyrics").textContent = songInfo.lyrics;
 document.getElementById("audioPlayer").src = songInfo.audioSrc;
 
-// saveSelectedSong(songInfo);
 
 processPlaylist();
 }
-
-// function saveSelectedSong(songInfo) {
-//    selectedSongs.push(songInfo);
-
-//    if (selectedSongs.length > 3) {
-//       selectedSongs.shift();
-//    }
-//    updatePreviousSongsDropdown();
-// }
 
 function updatePreviousSongsDropdown() {
    // Get the previous songs dropdown element
@@ -157,36 +146,6 @@ function updatePreviousSongsDropdown() {
       }
    });
 }
-// function updatePreviousSongsDropdown() {
-//    var previousSongsDropdown = document.getElementById("previousSongs");
-
-//    if (!selectedSongs || selectedSongs.length === 0) {
-//       previousSongsDropdown.innerHTML = '<option value="">No Previous Songs</option>';
-//       return;
-//    }
-
-//    previousSongsDropdown.innerHTML = "";
-
-//    for (var i = 0; i < selectedSongs.length; i++) {
-//       var option = document.createElement("option");
-//       option.value = i;
-//       option.textContent = selectedSongs[i].title + " by " + selectedSongs[i].artist;
-//       previousSongsDropdown.appendChild(option);
-//    }
-
-//    previousSongsDropdown.addEventListener("change", function () {
-//       var selectedIndex = this.value;
-
-//       if (selectedIndex !== "") {
-//          var selectedSongInfo = selectedSongs[selectedIndex];
-
-//          document.getElementById("songTitle").textContent = selectedSongInfo.title;
-//          document.getElementById("lyrics").textContent = selectedSongInfo.lyrics;
-//          document.getElementById("audioPlayer").src = selectedSongInfo.audioSrc;
-//       }
-//    });
-// }
-
 //* Updated to javascript only, styling in css file.
 function updateSongInfo() {
    var selectedHoliday = document.getElementById("dropdown").value;
