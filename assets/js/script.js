@@ -69,6 +69,11 @@ const processPlaylist = async () => {
       lyricsBtn.setAttribute("data-target", "#lyricsModal");
       lyricsBtn.addEventListener("click", generateLyrics);
       lyricsBtn.innerHTML = "Get lyrics";
+      let favoritesBtn = document.createElement("button");
+      favoritesBtn.setAttribute("type", "button");
+      favoritesBtn.setAttribute("class", "col-2 btn btn-dark favoritesBtn");
+      favoritesBtn.addEventListener("click", addToFavorites);
+      favoritesBtn.innerHTML = "Add to favorites";
 
 
 
@@ -87,7 +92,7 @@ const processPlaylist = async () => {
 
 
 
-      cardBody.append(songTitle, songArtist, playTrackEl, lyricsBtn);
+      cardBody.append(songTitle, songArtist, playTrackEl, lyricsBtn, favoritesBtn);
       songBlock.append(cardBody);
       playlistDiv.append(songBlock);
    }
@@ -267,3 +272,28 @@ async function generateLyrics(e) {
       }
    }
 }
+function addToFavorites(e) {
+e.preventDefault();
+let favorites= JSON.parse(localStorage.getItem("favorites")) || []
+songTitle = e.target.previousElementSibling.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+   artistName = e.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+   let newFavorite= {
+   artist: artistName,
+   song: songTitle
+   }
+   favorites.push(newFavorite)
+   console.log(songTitle)
+   console.log(artistName)
+   localStorage.setItem("favorites", JSON.stringify(favorites))
+   renderFavorites()
+}
+function renderFavorites() {
+   let favoriteBox=document.getElementById("favorites-box")
+   let favorites= JSON.parse(localStorage.getItem("favorites")) || []
+   let lastThree= favorites.slice(-3)
+   favoriteBox.innerHTML=""
+   lastThree.forEach(favorite => {
+      favoriteBox.innerHTML += `<p>${favorite.song} by ${favorite.artist}</p>`
+   });
+}
+renderFavorites()
