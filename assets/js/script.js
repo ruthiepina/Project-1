@@ -63,7 +63,7 @@ const processPlaylist = async () => {
       songArtist.innerHTML = playlist.tracks.items[i].track.artists[0].name;
       let lyricsBtn = document.createElement("button");
       lyricsBtn.setAttribute("type", "button");
-      lyricsBtn.setAttribute("class", "col-2 btn btn-dark lyrics-btn");
+      lyricsBtn.setAttribute("class", "col btn btn-dark lyrics-btn");
       lyricsBtn.setAttribute("data-toggle", "modal");
       lyricsBtn.setAttribute("data-target", "#lyricsModal");
       lyricsBtn.addEventListener("click", generateLyrics);
