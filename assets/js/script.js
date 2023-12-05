@@ -1,4 +1,5 @@
 //* Runs Spotify endpoint against selected holiday
+// let selectedSongs = [];
 let accessToken = "";
 let playlist = "";
 const playlistArray = [
@@ -63,7 +64,7 @@ const processPlaylist = async () => {
       songArtist.innerHTML = playlist.tracks.items[i].track.artists[0].name;
       let lyricsBtn = document.createElement("button");
       lyricsBtn.setAttribute("type", "button");
-      lyricsBtn.setAttribute("class", "col-2 btn btn-dark lyrics-btn");
+      lyricsBtn.setAttribute("class", "col btn btn-dark lyrics-btn");
       lyricsBtn.setAttribute("data-toggle", "modal");
       lyricsBtn.setAttribute("data-target", "#lyricsModal");
       lyricsBtn.addEventListener("click", generateLyrics);
@@ -97,24 +98,89 @@ function updateSongInfo() {
 
    var songInfo = getSongInfo(selectedHoliday);
 
-   document.getElementById("songTitle").textContent = songInfo.title;
+document.getElementById("songTitle").textContent = songInfo.title;
+document.getElementById("lyrics").textContent = songInfo.lyrics;
+document.getElementById("audioPlayer").src = songInfo.audioSrc;
 
-   document.getElementById("lyrics").textContent = songInfo.lyrics;
+// saveSelectedSong(songInfo);
 
-   document.getElementById("audioPlayer").src = songInfo.audioSrc;
+processPlaylist();
 }
 
-function getSongInfo(holiday) {
-   // This is a placeholder example!!! This took a while for me so please be careful
-   return {
-      title: "Song Title for " + holiday,
-      lyrics: "Lyrics for the song related to " + holiday,
-      audioSrc: "path/to/audio/file.mp3",
-   };
+// function saveSelectedSong(songInfo) {
+//    selectedSongs.push(songInfo);
+
+//    if (selectedSongs.length > 3) {
+//       selectedSongs.shift();
+//    }
+//    updatePreviousSongsDropdown();
+// }
+
+function updatePreviousSongsDropdown() {
+   // Get the previous songs dropdown element
+   var previousSongsDropdown = document.getElementById("previousSongs");
+
+   if (!selectedSongs || selectedSongs.length === 0) {
+   
+   previousSongsDropdown.innerHTML = '<option value="">No Previous Songs</option>';
+   return;
+   }
+
+   // Add options for each selected song
+   for (var i = 0; i < selectedSongs.length; i++) {
+      var option = document.createElement("option");
+      option.value = i; // Use the index as the value
+      option.textContent = selectedSongs[i].title + " by ";
+      previousSongsDropdown.appendChild(option);
+   }
+
+   // Add event listener to the dropdown
+   previousSongsDropdown.addEventListener("change", function () {
+      console.log("Dropdown changed");
+      // Get the selected index
+      var selectedIndex = this.value;
+
+      // Check if an option is selected
+      if (selectedIndex !== "") {
+         // Get the corresponding songInfo
+         var selectedSongInfo = selectedSongs[selectedIndex];
+
+         // Update the current song information
+         document.getElementById("songTitle").textContent = selectedSongInfo.title;
+         document.getElementById("lyrics").textContent = selectedSongInfo.lyrics;
+         document.getElementById("audioPlayer").src = selectedSongInfo.audioSrc;
+      }
+   });
 }
+// function updatePreviousSongsDropdown() {
+//    var previousSongsDropdown = document.getElementById("previousSongs");
 
+//    if (!selectedSongs || selectedSongs.length === 0) {
+//       previousSongsDropdown.innerHTML = '<option value="">No Previous Songs</option>';
+//       return;
+//    }
 
+//    previousSongsDropdown.innerHTML = "";
 
+//    for (var i = 0; i < selectedSongs.length; i++) {
+//       var option = document.createElement("option");
+//       option.value = i;
+//       option.textContent = selectedSongs[i].title + " by " + selectedSongs[i].artist;
+//       previousSongsDropdown.appendChild(option);
+//    }
+
+//    previousSongsDropdown.addEventListener("change", function () {
+//       var selectedIndex = this.value;
+
+//       if (selectedIndex !== "") {
+//          var selectedSongInfo = selectedSongs[selectedIndex];
+
+//          document.getElementById("songTitle").textContent = selectedSongInfo.title;
+//          document.getElementById("lyrics").textContent = selectedSongInfo.lyrics;
+//          document.getElementById("audioPlayer").src = selectedSongInfo.audioSrc;
+//       }
+//    });
+// }
 
 //* Updated to javascript only, styling in css file.
 function updateSongInfo() {
@@ -139,6 +205,10 @@ const getPlaylist = async (playlistId) => {
    return playlist;
 };
 
+
+
+
+
 //* Spotify API Process
 const globalAsync = async () => {
    //* Get Spotify Token
@@ -157,6 +227,7 @@ const globalAsync = async () => {
 
    const CLIENT_ID = "09492227f96b49f889b2baa58716b1a3";
    const CLIENT_SECRET = "3ac19ec7f05f435195950a492ad9fbd1";
+   
    await spotifyToken(); //* Await until function returns promise
 };
 globalAsync(); //* Call main program
