@@ -161,13 +161,38 @@ const globalAsync = async () => {
 };
 globalAsync(); //* Call main program
 
+let modalTitle = document.querySelector("#modalTitle");
+let modalBody = document.querySelector('.modal-body');
+let songTitle = '';
+let artistName = '';
+let songId = '';
 
-
-var modalTitle = document.querySelector("#modalTitle");
-
-function generateLyrics(e) {
+async function generateLyrics(e) {
    e.preventDefault();
-   if (e.target.nodeName === "BUTTON") {
-      modalTitle.innerHTML = e.target.previousElementSibling.previousElementSibling.innerHTML;
+   songTitle = e.target.previousElementSibling.previousElementSibling.previousElementSibling.innerHTML;
+   artistName = e.target.previousElementSibling.previousElementSibling.innerHTML;
+   if (e.target.nodeName === "BUTTON"){
+      modalTitle.innerHTML = songTitle;
+      const url = `https://musixmatch-lyrics-songs.p.rapidapi.com/songs/lyrics?t=${songTitle}&a=${artistName}&type=text`;
+      const options = {
+         method: 'GET',
+         headers: {
+            'X-RapidAPI-Key': 'ab0036b305msh762ff5f3f5560e4p1c4594jsn319a9a8d0b8a',
+            'X-RapidAPI-Host': 'musixmatch-lyrics-songs.p.rapidapi.com'
+         }
+      };
+
+      try {
+         const response = await fetch(url, options);
+         let result = await response.text();
+         for(i=0;i<=result.length;i++){
+            let slicer = result.substring(result.indexOf('['), result.indexOf(']')+1)
+            result = result.replace(slicer, '')
+         }
+         modalBody.innerHTML = result;
+      } catch (error) {
+         modalBody.innerHTML = 'Unable to find lyrics';
+         console.error(error);
+      }
    }
 }
